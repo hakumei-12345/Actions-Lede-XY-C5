@@ -46,6 +46,30 @@ popd
 # Modify the version number
 sed -i "s/OpenWrt /Ljzkirito build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
 #=================================================
+
+cat >> package/lean/pdnsd-alt/patches/10-disallow-aaaa.patch <<eof
+diff --git a/src/dns_answer.c b/src/dns_answer.c
+index 6a2a5b5..5ded0f9 100644
+--- a/src/dns_answer.c
++++ b/src/dns_answer.c
+@@ -567,6 +567,7 @@ static int add_rrset(dns_msg_t **ans, size_t *sz, size_t *allocsz,
+ 		if (rnd_recs) b=first=randrr(crrset->rrs);
+
+ 		while (b) {
++			if (tp==T_AAAA) goto add_rrset_next;
+ 			if (!add_rr(ans, sz, allocsz, rrn, tp, ans_ttl(crrset,queryts),
+ 				    b->rdlen, b->data, S_ANSWER, udp, cb))
+ 				return 0;
+@@ -584,6 +585,7 @@ static int add_rrset(dns_msg_t **ans, size_t *sz, size_t *allocsz,
+ 					break;
+ 				}
+ 			}
++add_rrset_next:
+ 			b=b->next;
+ 			if (rnd_recs) {
+ 				if(!b) b=crrset->rrs; /* wraparound */
+eof
+
 # Remove upx commands
 #makefile_file="$({ find package|grep Makefile |sed "/Makefile./d"; } 2>"/dev/null")"
 #for a in ${makefile_file}
