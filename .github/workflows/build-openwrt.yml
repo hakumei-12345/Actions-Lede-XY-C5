@@ -20,12 +20,12 @@ on:
     paths:
       - 'XY-C1.config'
   schedule:
-    - cron: 0 21 * * */3
+    - cron: 0 21 * * 5
   watch:
     types: started
 
 env:
-  REPO_URL: https://github.com/Ljzkirito/lede
+  REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: XY-C1.config
@@ -35,7 +35,7 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
-  UPLOAD_WETRANSFER: true
+  UPLOAD_WETRANSFER: false
   TZ: Asia/Shanghai
 
 jobs:
