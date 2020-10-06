@@ -34,10 +34,10 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon luci-theme-argo
 popd
 #=================================================
 # 同步部分package
-pushd package/network/services
-rm -rf ppp shellsync
-svn co https://github.com/openwrt/openwrt/trunk/package/network/services/ppp
-popd
+#pushd package/network/services
+#rm -rf ppp shellsync
+#svn co https://github.com/openwrt/openwrt/trunk/package/network/services/ppp
+#popd
 #=================================================
 # Add kernel build user
 [ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
