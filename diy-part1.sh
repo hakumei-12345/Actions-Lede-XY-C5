@@ -16,3 +16,9 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 #sed -i '$a src-git helloworld https://github.com/Ljzkirito/helloworld' feeds.conf.default
+
+wget https://github.com/coolsnowwolf/lede/commit/aaa5a16a2b77122978bdfa64d86f6dbce2c7c32d.patch
+git apply aaa5a16a2b77122978bdfa64d86f6dbce2c7c32d.patch
+
+#wget https://github.com/AmadeusGhost/lede/commit/aaa5a16a2b77122978bdfa64d86f6dbce2c7c32d.patch
+#git apply 34d9c51bbb9828f5eaeb9730e8c19e0b898e048b.patch
